@@ -22,13 +22,20 @@ if (!pdfjsLib.getDocument || !pdfjsViewer.PDFViewer) {
 var USE_ONLY_CSS_ZOOM = true;
 var TEXT_LAYER_MODE = 0; // DISABLE
 var MAX_IMAGE_SIZE = 1024 * 1024;
-var CMAP_URL = "../../node_modules/pdfjs-dist/cmaps/";
+var CMAP_URL = "../cmaps/";
 var CMAP_PACKED = true;
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "../../node_modules/pdfjs-dist/build/pdf.worker.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "../build/pdf.worker.js";
 
-var DEFAULT_URL = "../../web/compressed.tracemonkey-pldi-09.pdf";
+var search = window.location.search.substring(1);
+
+var query = search.split("&").reduce(function(a, b){
+  var val = b.split("=");
+  a[val[0]] = val[1];
+  return a;
+}, {});
+
+var DEFAULT_URL = query.file;
 var DEFAULT_SCALE_DELTA = 1.1;
 var MIN_SCALE = 0.25;
 var MAX_SCALE = 10.0;

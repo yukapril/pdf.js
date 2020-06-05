@@ -1580,6 +1580,7 @@ gulp.task(
     "image_decoders",
     "lib",
     "minified",
+    "minified-es5",
     function () {
       var VERSION = getVersionJSON().version;
 
